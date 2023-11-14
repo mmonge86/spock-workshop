@@ -10,7 +10,7 @@ class WithExampleSpec extends Specification {
         expect:
         with(account) {
             accountNo == "123"
-            balance == 50.0
+            balance == 60.0
         }
     }
 }
