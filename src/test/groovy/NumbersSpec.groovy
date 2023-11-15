@@ -53,9 +53,21 @@ class NumbersSpec extends Specification {
         list.remove(20)
     }
 
+    def "max number"() {
+        when:
+        def x = Math.max(1, 2)
 
-    @Unroll
-    def "numbers to the power of two"(int a, int b, int c) {
+        then:
+        x == 2
+
+        expect:
+        Math.max(1, 2) == 2
+        Math.max(5, 8) == 8
+        Math.max(0, 10) == 10
+    }
+
+
+    def "numbers to the power of two"() {
         expect:
         Math.pow(a, b) == c
 

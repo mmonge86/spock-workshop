@@ -15,6 +15,8 @@ public class SharedMapExample {
         testObj.addToMap(null, "second value");
         testObj.addToMap(null, "third value");
         testObj.addToMap(null, "fourth value");
+
+        testObj.printSharedMap();
     }
 
     /**

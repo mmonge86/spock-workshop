@@ -10,16 +10,39 @@ class MockExampleSpec extends Specification {
 
     def setup() {
         testObj = new Account(helper: accountHelperMock)
-        accountHelperMock.validateAccount(_ as Account) >> true
-
     }
 
-    def "should validate account on creation"() {
+    def "should validate account on creation v1"() {
+        given:
+        accountHelperMock.validateAccount(testObj) >> true
+
         when:
         def isAccountValid = testObj.createAccount("some-id")
 
         then:
         isAccountValid
+
+        and: "should fail when using other account"
+
+        when:
+        Account newAccount = new Account(helper: accountHelperMock)
+        isAccountValid = newAccount.createAccount("asd")
+
+        then:
+        !isAccountValid
+
     }
+
+
+
+    def "should validate account on creation v2"() {
+        when:
+        def isAccountValid = testObj.createAccount("some-id")
+
+        then: "test the interaction"
+        isAccountValid
+        1 * accountHelperMock.validateAccount(testObj) >> true
+    }
+
 
 }
